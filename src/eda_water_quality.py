@@ -1,6 +1,7 @@
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
+plt.style.use("ggplot")
 
 CLEAN_PATH = Path("data/processed/water_quality_cleaned.csv")
 FIG_DIR = Path("outputs/figures")
@@ -39,7 +40,8 @@ def print_summary_statistics(df: pd.DataFrame) -> None:
 def plot_dissolved_oxygen_histogram(df: pd.DataFrame, out_path: Path) -> None:
     """Create and save a histogram of dissolved oxygen values"""
     plt.figure(figsize=(8,5))
-    df["dissolved_oxygen_mg_l"].dropna().plot(kind="hist",bins=20)
+    bins = range(0,18,1)
+    df["dissolved_oxygen_mg_l"].dropna().plot(kind="hist",bins=bins, edgecolor="black")
     plt.title("Distribution of Dissolved Oxygen (mg/L)")
     plt.xlabel("Dissolved Oxygen (mg/L)")
     plt.ylabel("Frequency")
