@@ -129,8 +129,37 @@ Possible extensions of this project include:
 - Correlation analysis between variables
 - Predictive modelling of water temperature or dissolved oxygen
 
----
-
-## Author
+## Data Analysis
 
 Portfolio data analysis project developed to demonstrate reproducible environmental data analysis using Python.
+
+Exploratory Data Analysis Findings
+Dataset Overview
+
+2,366 observations of water quality measurements
+
+Date range: 1989–2019
+
+Variables include salinity, dissolved oxygen, pH, water temperature, and air temperature
+
+Dissolved Oxygen Distribution
+
+The histogram of dissolved oxygen concentrations shows most observations clustered between 5–9 mg/L, which is consistent with healthy aquatic conditions.
+
+Lower oxygen values (<3 mg/L) appear occasionally and may represent periods of environmental stress or measurement anomalies.
+
+Temperature–Oxygen Relationship
+
+The scatter plot of water temperature versus dissolved oxygen suggests a negative relationship, where higher water temperatures correspond with lower oxygen concentrations. This pattern aligns with known physical processes, as warmer water holds less dissolved oxygen.
+
+Temporal Trends
+
+The time-series plot of water temperature reveals strong seasonal cycles, with regular peaks and troughs that likely correspond to summer and winter temperature changes.
+
+Several anomalous temperature spikes (>60°C) appear in the dataset, suggesting potential measurement or recording errors.
+
+Air–Water Temperature Relationship
+
+The scatter plot of air temperature versus water temperature shows a positive relationship, indicating that atmospheric conditions influence water temperature dynamics.
+
+However, the number of air temperature observations is limited relative to other variables.
