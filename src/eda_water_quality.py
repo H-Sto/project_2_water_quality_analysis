@@ -115,6 +115,8 @@ def main():
 
     print("Dataset loaded successfully")
 
+    print(f"\nSaved figures to: {FIG_DIR}")
+
 if __name__ == "__main__":
     main()
 
