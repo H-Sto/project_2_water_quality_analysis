@@ -163,3 +163,16 @@ Air–Water Temperature Relationship
 The scatter plot of air temperature versus water temperature shows a positive relationship, indicating that atmospheric conditions influence water temperature dynamics.
 
 However, the number of air temperature observations is limited relative to other variables.
+
+## Key Findings
+
+The exploratory analysis identified several clear patterns in the dataset.
+
+- The dataset contains **2,366 cleaned observations** collected between **1989 and 2019**.
+- Dissolved oxygen values were most commonly concentrated in the mid-range, with many observations falling between approximately **5 and 9 mg/L**.
+- The scatter plot of **water temperature vs dissolved oxygen** suggested a generally negative relationship, consistent with the physical expectation that warmer water holds less dissolved oxygen.
+- The time-series plot of **water temperature over time** showed strong seasonal variation, with repeated cyclical peaks and troughs across the monitoring period.
+- Several unusually high recorded temperatures (above **60°C**) were identified, suggesting possible measurement or recording errors in the raw dataset.
+- The relationship between **air temperature and water temperature** appeared positive, although the number of air temperature observations was much smaller than for the core water quality variables.
+
+These findings demonstrate both the value of exploratory data analysis for identifying environmental patterns and the importance of checking data quality before drawing conclusions.
