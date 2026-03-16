@@ -51,6 +51,11 @@ def find_strong_correlations(corr_matrix: pd.DataFrame) -> pd.DataFrame:
 
     return corr_long
 
+def filter_correlations(corr_long: pd.DataFrame, threshold: float) -> pd.DataFrame:
+    """Filter correlations by absolute value threshold."""
+    filtered = corr_table[corr_table["correlation"].abs() >= threshold]
+    return filtered
+
 def main() -> None:
     df = load_clean_data(CLEAN_PATH)
     numeric_df = prepare_numeric_data(df)
@@ -58,9 +63,13 @@ def main() -> None:
     plot_correlation_heatmap(corr_matrix, FIG_DIR / "correlation_heatmap.png")
     strong_corrs = find_strong_correlations(corr_matrix)
 
-    print("\nStrongest correlations:")
-    print(strong_corrs.head(10).round(2))
     strong_corrs.to_csv(TABLE_DIR / "strong_correlation.csv", index=False)
+    filtered_corrs = filter_correlations(strong_corrs, threshold=0.3)
+
+    print("\nFiltered correlations (|r| ≥ 0.3):")
+    print(filtered_corrs.round(2))
+
+    filtered_corrs.to_csv(TABLE_DIR / "filtered_correlations.csv", index=False)
 
 
 if __name__ == "__main__":
