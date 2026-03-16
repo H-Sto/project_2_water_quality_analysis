@@ -34,11 +34,33 @@ def plot_correlation_heatmap(corr_matrix: pd.DataFrame, out_path: Path) -> None:
     plt.savefig(out_path, dpi=200)
     plt.close()
 
+def find_strong_correlations(corr_matrix: pd.DataFrame) -> pd.DataFrame:
+    """Return a table of the strongest variable correlations."""
+    corr_long = corr_matrix.unstack().reset_index()
+    corr_long.columns = ["variable_1", "variable_2", "correlation"]
+    corr_long = corr_long[corr_long["variable_1"] != corr_long["variable_2"]]
+    
+    corr_long["pair_key"] = corr_long.apply(lambda row: tuple(sorted([row["variable_1"], row["variable_2"]])),axis=1)
+
+    corr_long = corr_long.drop_duplicates(subset="pair_key")
+
+    corr_long["abs_correlation"] = corr_long["correlation"].abs()
+    corr_long = corr_long.sort_values("abs_correlation", ascending=False)
+
+    corr_long = corr_long.drop(columns=["pair_key", "abs_correlation"])
+
+    return corr_long
+
 def main() -> None:
     df = load_clean_data(CLEAN_PATH)
     numeric_df = prepare_numeric_data(df)
     corr_matrix = calculate_correlation_matrix(numeric_df)
     plot_correlation_heatmap(corr_matrix, FIG_DIR / "correlation_heatmap.png")
+    strong_corrs = find_strong_correlations(corr_matrix)
+
+    print("\nStrongest correlations:")
+    print(strong_corrs.head(10).round(2))
+    strong_corrs.to_csv(TABLE_DIR / "strong_correlation.csv", index=False)
 
 
 if __name__ == "__main__":
