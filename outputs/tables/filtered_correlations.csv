@@ -1,0 +1,10 @@
+variable_1,variable_2,correlation
+secchi_depth_m,water_depth_m,0.8217038232354092
+water_temp_c,air_temp_c,0.7501888395806572
+salinity_ppt,year,-0.633373917484632
+dissolved_oxygen_mg_l,water_temp_c,-0.5128869421671586
+ph,air_temp_c,0.44348355744409895
+dissolved_oxygen_mg_l,year,-0.3932397332686595
+ph,year,-0.376075390779305
+dissolved_oxygen_mg_l,air_temp_c,-0.3332058511310531
+salinity_ppt,dissolved_oxygen_mg_l,0.3027157718599963

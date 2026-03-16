@@ -51,9 +51,9 @@ def find_strong_correlations(corr_matrix: pd.DataFrame) -> pd.DataFrame:
 
     return corr_long
 
-def filter_correlations(corr_long: pd.DataFrame, threshold: float) -> pd.DataFrame:
+def filter_correlations(strong_corrs: pd.DataFrame, threshold: float) -> pd.DataFrame:
     """Filter correlations by absolute value threshold."""
-    filtered = corr_table[corr_table["correlation"].abs() >= threshold]
+    filtered = strong_corrs[strong_corrs["correlation"].abs() >= threshold]
     return filtered
 
 def main() -> None:
