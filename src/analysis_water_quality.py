@@ -15,6 +15,7 @@ def load_clean_data(path: Path) -> pd.DataFrame:
 def prepare_numeric_data(df: pd.DataFrame) -> pd.DataFrame:
     """Select and return numeric columns for analysis."""
     numeric_df = df.select_dtypes(include="number").copy()
+    numeric_df = numeric_df.drop(columns=["year", "month"], errors = "ignore")
     return numeric_df
 
 def calculate_correlation_matrix(df:pd.DataFrame) -> pd.DataFrame:
@@ -56,7 +57,19 @@ def filter_correlations(strong_corrs: pd.DataFrame, threshold: float) -> pd.Data
     filtered = strong_corrs[strong_corrs["correlation"].abs() >= threshold]
     return filtered
 
+def calculate_monthly_averages(df: pd.DataFrame) -> pd.DataFrame:
+    """Calculate monthly mean values for selected water quality variables."""
+    subset = df[["month", "water_temp_c", "dissolved_oxygen_mg_l"]].copy()
+    subset = subset.dropna(subset=["month"])
+    monthly_summary = subset.groupby("month")[["water_temp_c", "dissolved_oxygen_mg_l"]].mean()
+    monthly_summary = monthly_summary.reset_index()
+    return monthly_summary
+
 def main() -> None:
+
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    TABLE_DIR.mkdir(parents=True, exist_ok=True)
+
     df = load_clean_data(CLEAN_PATH)
     numeric_df = prepare_numeric_data(df)
     corr_matrix = calculate_correlation_matrix(numeric_df)
@@ -66,10 +79,12 @@ def main() -> None:
     strong_corrs.to_csv(TABLE_DIR / "strong_correlation.csv", index=False)
     filtered_corrs = filter_correlations(strong_corrs, threshold=0.3)
 
-    print("\nFiltered correlations (|r| ≥ 0.3):")
-    print(filtered_corrs.round(2))
-
     filtered_corrs.to_csv(TABLE_DIR / "filtered_correlations.csv", index=False)
+    monthly_summary = calculate_monthly_averages(df)
+    print("\nMonthly average:")
+    print(monthly_summary.round(2))
+
+    monthly_summary.to_csv(TABLE_DIR / "monthly_average.csv", index=False)
 
 
 if __name__ == "__main__":
