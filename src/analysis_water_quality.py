@@ -65,6 +65,17 @@ def calculate_monthly_averages(df: pd.DataFrame) -> pd.DataFrame:
     monthly_summary = monthly_summary.reset_index()
     return monthly_summary
 
+def plot_monthly_water_temperature(monthly_df: pd.DataFrame, out_path:Path) -> None:
+    """Plot monthly average water temperature."""
+    plt.figure(figsize=(8,5))
+    plt.plot(monthly_df["month"], monthly_df["water_temp_c"], marker="o")
+    plt.title("Average Water Temperature by Month")
+    plt.xlabel("Month")
+    plt.ylabel("Water Temperature (°C)")
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=200)
+    plt.close()
+
 def main() -> None:
 
     FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -81,11 +92,10 @@ def main() -> None:
 
     filtered_corrs.to_csv(TABLE_DIR / "filtered_correlations.csv", index=False)
     monthly_summary = calculate_monthly_averages(df)
-    print("\nMonthly average:")
-    print(monthly_summary.round(2))
 
     monthly_summary.to_csv(TABLE_DIR / "monthly_average.csv", index=False)
 
+    plot_monthly_water_temperature(monthly_summary, FIG_DIR / "monthly_water_temperature.png")
 
 if __name__ == "__main__":
     main()
