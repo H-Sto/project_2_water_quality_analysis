@@ -1,5 +1,6 @@
 from clean_water_quality import main as clean_main
 from eda_water_quality import main as eda_main
+from analysis_water_quality import main as analysis_main
 
 def run_pipeline() -> None:
 
@@ -8,6 +9,9 @@ def run_pipeline() -> None:
 
     print("Data cleaning complete, starting exploratory data analysis...")
     eda_main()
+
+    print("Exploratory data analysis complete, starting further analysis...")
+    analysis_main()
 
     print("Pipeline complete.")
 

@@ -131,5 +131,9 @@ def main() -> None:
 
     plot_temp_vs_oxygen_monthly( monthly_summary, FIG_DIR / "month_temp_vs_oxygen.png")
 
+    print("Advanced analysis complete")
+    print(f"Saved figures to:{FIG_DIR}")
+    print(f"Saved tables to:{TABLE_DIR}")
+
 if __name__ == "__main__":
     main()
