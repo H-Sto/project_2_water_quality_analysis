@@ -67,8 +67,10 @@ def calculate_monthly_averages(df: pd.DataFrame) -> pd.DataFrame:
 
 def plot_monthly_water_temperature(monthly_df: pd.DataFrame, out_path:Path) -> None:
     """Plot monthly average water temperature."""
+    month_labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     plt.figure(figsize=(8,5))
     plt.plot(monthly_df["month"], monthly_df["water_temp_c"], marker="o")
+    plt.xticks(ticks=monthly_df["month"], labels=month_labels)
     plt.title("Average Water Temperature by Month")
     plt.xlabel("Month")
     plt.ylabel("Water Temperature (°C)")
@@ -78,8 +80,10 @@ def plot_monthly_water_temperature(monthly_df: pd.DataFrame, out_path:Path) -> N
 
 def plot_monthly_dissolved_oxygen(monthly_df: pd.DataFrame, out_path: Path) -> None:
     """Plot monthly dissolved oxygen"""
+    month_labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     plt.figure(figsize=(8,5))
     plt.plot(monthly_df["month"], monthly_df["dissolved_oxygen_mg_l"], marker="o")
+    plt.xticks(ticks=monthly_df["month"], labels=month_labels)
     plt.title("Average Dissolved Oxygen by Month")
     plt.xlabel("Month")
     plt.ylabel("Dissolved Oxygen (mg/L)")
