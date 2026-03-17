@@ -76,6 +76,17 @@ def plot_monthly_water_temperature(monthly_df: pd.DataFrame, out_path:Path) -> N
     plt.savefig(out_path, dpi=200)
     plt.close()
 
+def plot_monthly_dissolved_oxygen(monthly_df: pd.DataFrame, out_path: Path) -> None:
+    """Plot monthly dissolved oxygen"""
+    plt.figure(figsize=(8,5))
+    plt.plot(monthly_df["month"], monthly_df["dissolved_oxygen_mg_l"], marker="o")
+    plt.title("Average Dissolved Oxygen by Month")
+    plt.xlabel("Month")
+    plt.ylabel("Dissolved Oxygen (mg/L)")
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=200)
+    plt.close()
+
 def main() -> None:
 
     FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -96,6 +107,8 @@ def main() -> None:
     monthly_summary.to_csv(TABLE_DIR / "monthly_average.csv", index=False)
 
     plot_monthly_water_temperature(monthly_summary, FIG_DIR / "monthly_water_temperature.png")
+
+    plot_monthly_dissolved_oxygen(monthly_summary, FIG_DIR / "monthly_dissolved_oxygen.png")
 
 if __name__ == "__main__":
     main()
