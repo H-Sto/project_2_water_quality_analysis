@@ -91,6 +91,21 @@ def plot_monthly_dissolved_oxygen(monthly_df: pd.DataFrame, out_path: Path) -> N
     plt.savefig(out_path, dpi=200)
     plt.close()
 
+def plot_temp_vs_oxygen_monthly(monthly_df: pd.DataFrame, out_path: Path) -> None:
+    """Plot monthly water temperature and dissolved oxygen on the same chart."""
+    plt.figure(figsize=(8,5))
+    plt.plot(monthly_df["month"], monthly_df["water_temp_c"], marker="o", label="Water Temperature (°C)")
+    plt.plot(monthly_df["month"], monthly_df["dissolved_oxygen_mg_l"], marker="o", label="Dissolved Oxygen (mg/L)")
+    month_labels= ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    plt.xticks(ticks=monthly_df["month"], labels=month_labels)
+    plt.legend()
+    plt.title("Monthly Water Temperature vs Dissolved Oxygen")
+    plt.xlabel("Month")
+    plt.ylabel("Value")
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=200)
+    plt.close()
+
 def main() -> None:
 
     FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -113,6 +128,8 @@ def main() -> None:
     plot_monthly_water_temperature(monthly_summary, FIG_DIR / "monthly_water_temperature.png")
 
     plot_monthly_dissolved_oxygen(monthly_summary, FIG_DIR / "monthly_dissolved_oxygen.png")
+
+    plot_temp_vs_oxygen_monthly( monthly_summary, FIG_DIR / "month_temp_vs_oxygen.png")
 
 if __name__ == "__main__":
     main()
