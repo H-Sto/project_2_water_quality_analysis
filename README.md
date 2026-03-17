@@ -2,177 +2,32 @@
 
 ## Project Overview
 
-This project performs an exploratory data analysis (EDA) of long-term water quality measurements collected from monitoring sites at Back Bay National Wildlife Refuge (Virginia, USA).
+This project analyses long-term water quality data from Back Bay National Wildlife Refuge (Virginia, USA) to identify environmental patterns and relationships between key variables.
 
-The dataset contains observations of multiple environmental variables including salinity, dissolved oxygen, pH, water temperature, air temperature, water depth, and water clarity.
+The analysis progresses from data cleaning and exploratory data analysis (EDA) to more advanced analytical techniques, including correlation analysis and seasonal aggregation.
 
-The goal of this project is to explore patterns in water quality measurements over time and investigate relationships between key environmental variables.
+The project is designed as a **portfolio-quality data science workflow**, demonstrating:
 
-This project was developed as part of a structured portfolio-building workflow to demonstrate reproducible data analysis using Python.
+- reproducible pipelines
+- structured Python project design
+- environmental data analysis
+- clear communication of results
 
 ---
 
 ## Dataset
 
-Source: Back Bay National Wildlife Refuge – Water Quality Monitoring Data
+**Source:** Back Bay National Wildlife Refuge – Water Quality Monitoring Data  
 
-The dataset contains measurements recorded between **1989 and 2019** across monitoring sites and includes variables such as:
+The dataset contains measurements recorded between **1989 and 2019**, including:
 
 - Salinity (ppt)
 - Dissolved Oxygen (mg/L)
 - pH
 - Secchi Depth (water clarity)
-- Water Depth
-- Water Temperature
-- Air Temperature
+- Water Depth (m)
+- Water Temperature (°C)
+- Air Temperature (°C)
 - Date of observation
 
-The raw dataset is stored in:
-
-data/raw/BKB_WaterQualityData_2020084.csv
-
----
-
-## Project Structure
-
-project-2-water-quality-analysis
-
-data  
-raw – original dataset  
-processed – cleaned dataset  
-
-outputs  
-figures – generated visualisations  
-
-src  
-clean_water_quality.py – data cleaning pipeline  
-eda_water_quality.py – exploratory data analysis  
-run_pipeline.py – executes the full workflow  
-
-notebooks – optional exploratory notebooks  
-
-requirements.txt – Python dependencies  
-README.md – project documentation  
-
----
-
-## Analysis Goals
-
-This project explores several questions:
-
-- How do key water quality indicators vary over time?
-- Are there seasonal patterns in water temperature?
-- What relationships exist between environmental variables such as:
-  - water temperature and dissolved oxygen
-  - air temperature and water temperature
-- What are the distributions of major water quality parameters?
-
----
-
-## Methods
-
-The analysis follows a reproducible pipeline consisting of two main stages.
-
-### Data Cleaning
-
-- Load the raw dataset
-- Standardise column names
-- Convert variables to appropriate data types
-- Handle missing or invalid values
-- Save a cleaned dataset for analysis
-
-### Exploratory Data Analysis
-
-- Summary statistics for water quality variables
-- Distribution visualisations
-- Time-series analysis
-- Scatter plots exploring relationships between environmental variables
-
-All analysis scripts are located in the `src` directory.
-
----
-
-## Running the Project
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-Run the analysis pipeline:
-
-python src/run_pipeline.py
-
-Generated visualisations will be saved to:
-
-outputs/figures/
-
----
-
-## Key Outputs
-
-The analysis generates several visualisations including:
-
-- Distribution of dissolved oxygen levels
-- Distribution of pH values
-- Water temperature trends over time
-- Relationship between air temperature and water temperature
-- Relationship between water temperature and dissolved oxygen
-
----
-
-## Future Improvements
-
-Possible extensions of this project include:
-
-- Seasonal decomposition of time series
-- Site-level comparison of water quality
-- Correlation analysis between variables
-- Predictive modelling of water temperature or dissolved oxygen
-
-## Data Analysis
-
-Portfolio data analysis project developed to demonstrate reproducible environmental data analysis using Python.
-
-Exploratory Data Analysis Findings
-Dataset Overview
-
-2,366 observations of water quality measurements
-
-Date range: 1989–2019
-
-Variables include salinity, dissolved oxygen, pH, water temperature, and air temperature
-
-Dissolved Oxygen Distribution
-
-The histogram of dissolved oxygen concentrations shows most observations clustered between 5–9 mg/L, which is consistent with healthy aquatic conditions.
-
-Lower oxygen values (<3 mg/L) appear occasionally and may represent periods of environmental stress or measurement anomalies.
-
-Temperature–Oxygen Relationship
-
-The scatter plot of water temperature versus dissolved oxygen suggests a negative relationship, where higher water temperatures correspond with lower oxygen concentrations. This pattern aligns with known physical processes, as warmer water holds less dissolved oxygen.
-
-Temporal Trends
-
-The time-series plot of water temperature reveals strong seasonal cycles, with regular peaks and troughs that likely correspond to summer and winter temperature changes.
-
-Several anomalous temperature spikes (>60°C) appear in the dataset, suggesting potential measurement or recording errors.
-
-Air–Water Temperature Relationship
-
-The scatter plot of air temperature versus water temperature shows a positive relationship, indicating that atmospheric conditions influence water temperature dynamics.
-
-However, the number of air temperature observations is limited relative to other variables.
-
-## Key Findings
-
-The exploratory analysis identified several clear patterns in the dataset.
-
-- The dataset contains **2,366 cleaned observations** collected between **1989 and 2019**.
-- Dissolved oxygen values were most commonly concentrated in the mid-range, with many observations falling between approximately **5 and 9 mg/L**.
-- The scatter plot of **water temperature vs dissolved oxygen** suggested a generally negative relationship, consistent with the physical expectation that warmer water holds less dissolved oxygen.
-- The time-series plot of **water temperature over time** showed strong seasonal variation, with repeated cyclical peaks and troughs across the monitoring period.
-- Several unusually high recorded temperatures (above **60°C**) were identified, suggesting possible measurement or recording errors in the raw dataset.
-- The relationship between **air temperature and water temperature** appeared positive, although the number of air temperature observations was much smaller than for the core water quality variables.
-
-These findings demonstrate both the value of exploratory data analysis for identifying environmental patterns and the importance of checking data quality before drawing conclusions.
+Raw data location:
